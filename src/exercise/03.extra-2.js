@@ -16,7 +16,13 @@ import {
 import {useAsync} from '../utils'
 
 // 🐨 Create a PokemonCacheContext
+const PokemonCacheContext = React.createContext();
 
+function PokemonCacheProvider(props) {
+  const [cache, dispatch] = React.useReducer(pokemonCacheReducer, {});
+  const value = [cache, dispatch];
+  return <PokemonCacheContext.Provider value={value} {...props} />
+}
 // 🐨 create a PokemonCacheProvider function
 // 🐨 useReducer with pokemonCacheReducer in your PokemonCacheProvider
 // 💰 you can grab the one that's in PokemonInfo
